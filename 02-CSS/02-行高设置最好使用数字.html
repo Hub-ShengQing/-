@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-行高设置最好使用数字</title>
+    <style>
+        h1 {
+            font-size: 30px;
+        }
+
+        .red {
+            line-height: 1.1;
+            border: solid red;
+        }
+
+        .green {
+            line-height: 1.1em;
+            border: solid green;
+        }
+
+        .blue {
+            line-height: 110%;
+            border: solid blue;
+        }
+
+        .box {
+            width: 18em;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box red">
+        <h1>使用数字设置行高可避免意外结果</h1>
+    </div>
+
+    <div class="box green">
+        <h1>“数字 + 单位”的赋值方式继承性很差</h1>
+    </div>
+
+    <div class="box blue">
+        <h1>百分比的赋值方式继承性很差</h1>
+    </div>
+</body>
+
+</html>

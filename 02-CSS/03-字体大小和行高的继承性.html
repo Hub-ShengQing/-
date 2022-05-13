@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>02-行高设置最好使用数字</title>
+    <title>03-字体大小和行高的继承性</title>
     <script src="libs/jquery.min.js"></script>
     <style>
         h1 {
-            font-size: 30px;
+            font-size: 24px;
+            font-size: 2em;
         }
 
         .red {
@@ -38,21 +39,21 @@
 
 <body>
     <div class="box red">
-        <h1>使用数字设置行高可避免意外结果</h1>
+        <h1>此处，数字设置行高时，行高值相对的是标题标签自身。</h1>
     </div>
 
     <div class="box green">
-        <h1>“数字 + 单位”的赋值方式继承性很差</h1>
+        <h1>而“数字 + 单位”设置行高时，行高值相对的是父盒子标签。</h1>
     </div>
 
     <div class="box blue">
-        <h1>百分比的赋值方式继承性很差</h1>
+        <h1>同样的，百分比设置行高时，行高值相对的也是父盒子标签。</h1>
     </div>
 
     <script>
         console.log($(".red h1").css('line-height'));   // 33px
         console.log($(".green h1").css('line-height')); // 16.5px
-        console.log($(".blue h1").css('line-height'));  // 16.5px
+        console.log($(".blue h1").css('line-height')); // 16.5px
     </script>
 </body>
 

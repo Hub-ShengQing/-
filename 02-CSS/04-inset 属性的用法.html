@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-inset 属性的用法</title>
+    <style>
+        div {
+            background-color: yellow;
+            width: 150px;
+            height: 120px;
+            position: relative;
+        }
+
+        span{
+            background-color: blue;
+            /* inset 属性只作用于定位元素。 */
+            position: absolute;
+
+            /* inset 属性用作定位元素的 top、right、bottom、left 这些属性的简写。 */
+            inset: 2em 1em;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <span>inset 属性的用法</span>
+    </div>
+</body>
+
+</html>

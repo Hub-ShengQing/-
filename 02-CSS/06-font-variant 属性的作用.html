@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-font-variant 属性的作用</title>
+</head>
+
+<body>
+    <!-- 1. font-variant 对中文文本不起作用 -->
+    <p style="font-variant: small-caps;">我的兄弟叫顺溜</p>
+    <p style="font-variant: normal;">我的兄弟叫顺溜</p>
+
+    <!-- 2. font-variant 用来显示文本小型大写字母的字体 -->
+    <!-- 2.1 font-variant: small-caps; 会把小写字母转为大写字母 -->
+    <!-- 2.2 font-variant: small-caps; 不会对大写字母起作用 -->
+    <p style="font-variant: small-caps;">My brother's name is Shun Liu</p>
+    <p style="font-variant: normal;">My brother's name is Shun Liu</p>
+    <!-- 2.3 font-variant: inherit; 可从父元素继承 font-variant 属性的值 -->
+    <div style="font-variant: small-caps;">
+        <span style="font-variant: inherit;">My brother's name is Shun Liu</span>
+    </div>
+</body>
+
+</html>

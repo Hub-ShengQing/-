@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05-对文档流的理解</title>
+    <style>
+        .fatherBox {
+            width: 300px;
+            background-color: rgb(33, 217, 237);
+        }
+
+        .fatherBox div {
+            width: 200px;
+            height: 50px;
+            background-color: rgb(198, 121, 121);
+        }
+
+        .fatherBox span {
+            background-color: rgb(87, 67, 172);
+        }
+
+        .fatherBox p {
+            display: inline-block;
+            height: 50px;
+            background-color: rgb(62, 216, 80);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fatherBox">
+        <!-- 1. 行内元素会按从左到右的顺序排列，碰到父元素边缘后换行，可拆分。 -->
+        <span>第 1 个行内元素</span>
+        <span>第 2 个行内元素</span>
+        <span>第 3 个行内元素</span>
+
+        <!-- 2. 块级元素独占一行，按从上至下的顺序排列 -->
+        <div>第 1 个块级元素</div>
+        <div>第 2 个块级元素</div>
+        <div>第 3 个块级元素</div>
+
+        <!-- 3. 行内块元素会按从左到右的顺序排列，碰到父元素边缘后换行，不可拆分。 -->
+        <p>第 1 个行内块元素</p>
+        <p>第 2 个行内块元素</p>
+        <p>第 3 个行内块元素</p>
+    </div>
+</body>
+
+</html>

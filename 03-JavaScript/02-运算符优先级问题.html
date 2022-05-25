@@ -8,10 +8,10 @@
     <title>02-运算符优先级问题</title>
     <script>
         var val = "test";
-        // 123
-        console.log("output is " + (val === "Test") ? "123" : "456");
-
-        console.log("output is" ? "123" : "456");
+        console.log("output is " + (val === "Test") ? "123" : "456");   // 123
+        console.log("output is" ? "123" : "456");   // 123
+        console.log(Boolean("output is"));  // true
+        console.log(Boolean(""));   // false
     </script>
 </head>
 

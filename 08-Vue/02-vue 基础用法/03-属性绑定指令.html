@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-属性绑定指令</title>
+    <!-- 1. 导入 vue 库文件，在 window 全局就有了 Vue 这个构造函数 -->
+    <script src="./lib/vue-2.6.12.js"></script>
+</head>
+
+<body>
+    <div id="hello">
+        <!-- v-bind 指令可以为元素属性动态绑定属性值 -->
+        <input type="text" v-bind:placeholder="info1" />
+        <!-- v-bind 指令可以简写为英文的 : -->
+        <input type="text" :placeholder="info2" />
+    </div>
+
+    <script>
+        // 2. 创建 Vue 的实例对象
+        const vm = new Vue({
+            // 3. 确定 vm 实例对象控制区域
+            // el 表示 vue 控制的页面区域
+            el: '#hello',
+            // data 对象就是要渲染到页面的数据
+            data: {
+                info1: '完整写法',
+                info2: '简写模式'
+            }
+        });
+    </script>
+</body>
+
+</html>

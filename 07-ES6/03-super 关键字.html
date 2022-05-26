@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-super 关键字</title>
+</head>
+
+<body>
+    <script>
+        class Father {
+            constructor(name) {
+                this.name = name;
+            }
+
+            doing() {
+                console.log(this.name + "在上班");
+            }
+        }
+
+        class Son extends Father {
+            constructor(name) {
+                // 1. super 可以调用父类的构造函数
+                super(name);
+                // 2. 子类在构造函数中使用 super, 必须放到 this 前面
+                this.firstName = name;
+            }
+
+            play() {
+                console.log("----");
+                // 3. super 可以调用父类的普通函数
+                super.doing();
+                console.log("----");
+            }
+        }
+
+        var son = new Son("小明");
+        son.doing();
+        son.play();
+    </script>
+</body>
+
+</html>

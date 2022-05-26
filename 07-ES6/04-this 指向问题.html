@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-this 指向问题</title>
+</head>
+
+<body>
+    <script>
+        class drink {
+            buy() {
+                console.log(this);
+                return this;
+            }
+        }
+
+        class Coffee extends drink {
+            constructor(name) {
+                super();
+                this.name = name;
+                console.log(this);
+            }
+
+            add() {
+                console.log(this.name + "咖啡被加入购物车了");
+                console.log(this);
+            }
+        }
+
+        // this 指向的都是函数调用者
+        var nesccafe = new Coffee("雀巢", 20.36);
+        console.log("-------------");
+        nesccafe.add();
+        console.log("-------------");
+        nesccafe.buy();
+        console.log("-------------");
+        console.log(nesccafe === nesccafe.buy());   // => true
+    </script>
+</body>
+
+</html>

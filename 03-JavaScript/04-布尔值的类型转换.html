@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-布尔值的类型转换</title>
+</head>
+
+<body>
+    <script>
+        var temp = [0];
+        if ([0]) {
+            console.log("[0]: " + (temp == true)); // false
+        } else {
+            console.log("测试");
+        }
+
+        console.log(temp);
+        console.log("temp.valueOf: " + temp.valueOf());
+        console.log("temp.toString: " + temp.toString());
+        console.log("[]: " + ([] == true)); // false
+        console.log("[1]: " + ([1] == true));   // true
+        console.log([1].valueOf());
+        console.log([1].toString());
+        console.log("Boolean([0]): " + (Boolean([0]) == true)); // true
+        console.log("1: " + (1 == true)); // true
+        console.log("[true]: " + ([true] == true)); // false
+        console.log("['1']: " + (['1'] == true)); // true
+        console.log("[1n]: " + ([1n] == true)); // true
+        // 若只有一边为对象，则会先调用对象的 valueOf() 方法，不能返回基本类型，
+        // 再调用对象的 toString() 方法，还是不能就会报错，否则用转化后的基本类型值继续进行判断
+
+
+
+
+    </script>
+</body>
+
+</html>

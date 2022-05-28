@@ -10,8 +10,11 @@
 
 <body>
     <script>
-        console.log(new String("A"));
-        console.log(String("A"));
+        /* 当基本字符串需要调用一个字符串对象才有的方法或者查询值的时候
+        （基本字符串是没有这些方法的），
+        JS 会自动将基本字符串转化为字符串对象并且调用相应的方法或者执行查询。 */
+        console.log(new String("A"));   // String Object
+        console.log(String("A"));   // A
     </script>
 </body>
 

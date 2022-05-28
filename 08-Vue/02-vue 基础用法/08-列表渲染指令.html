@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08-列表渲染指令</title>
+    <!-- 1. 导入 vue 库文件，在 window 全局就有了 Vue 这个构造函数 -->
+    <script src="./lib/vue-2.6.12.js"></script>
+</head>
+
+<body>
+    <div id="hello">
+        <!-- 官方推荐每项提供一个唯一的 key 属性 -->
+        <span v-for="item in items" :key="item">==》{{item}}</span>
+    </div>
+
+    <script>
+        // 2. 创建 Vue 的实例对象
+        const vm = new Vue({
+            // 3. 确定 vm 实例对象控制区域
+            // el 表示 vue 控制的页面区域
+            el: '#hello',
+            // data 对象就是要渲染到页面的数据
+            data: {
+                items: [
+                    '新蝙蝠侠上映时',
+                    '在北美和欧洲市场',
+                    '它被看作',
+                    '真正意义上的',
+                    '后疫情时代商业大制作'
+                ]
+            },
+        });
+    </script>
+</body>
+
+</html>

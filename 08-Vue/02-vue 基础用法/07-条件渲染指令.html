@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07-条件绑定指令</title>
+    <!-- 1. 导入 vue 库文件，在 window 全局就有了 Vue 这个构造函数 -->
+    <script src="./lib/vue-2.6.12.js"></script>
+</head>
+
+<body>
+    <div id="hello">
+        <input type="button" value="按钮1" v-if="flag">
+        <br>
+        <input type="button" value="按钮2" v-show="flag">
+        <br>
+        <div v-if="level==1">初阶</div>
+        <div v-else-if="level==2">中阶</div>
+        <div v-else>高阶</div>
+    </div>
+
+    <script>
+        // 2. 创建 Vue 的实例对象
+        const vm = new Vue({
+            // 3. 确定 vm 实例对象控制区域
+            // el 表示 vue 控制的页面区域
+            el: '#hello',
+            // data 对象就是要渲染到页面的数据
+            data: {
+                username: '升卿',
+                flag: true,
+                level: 1
+            },
+        });
+    </script>
+</body>
+
+</html>

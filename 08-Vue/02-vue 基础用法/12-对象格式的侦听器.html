@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>11-watch 侦听器的使用</title>
+    <title>12-对象格式的侦听器</title>
     <!-- 1. 导入 vue 库文件，在 window 全局就有了 Vue 这个构造函数 -->
     <script src="./lib/vue-2.6.12.js"></script>
     <script src="./lib/jquery-v3.6.0.js"></script>
@@ -28,19 +28,15 @@
             },
             // 所有的侦听器都要被定义到 watch 节点下
             watch: {
-                // 侦听器本质是函数，方法名和数据名一致
-                // 形参新值在前，旧值在后
-                username(newVal) {
-
-                    // 1. 调用 jQuery 中的 Ajax 发起请求，判断 newVal 是否被占用
-                    // $.get('https://www.escook.cn/api/finduser/' + newVal, function (res) {
-                    //     console.log(res);
-                    // });
-
-                    if (newVal === '') return;
-                    $.get('https://www.escook.cn/api/finduser/' + newVal, function (result) {
-                        console.log(result);
-                    });
+                // 对象格式的侦听器
+                username: {
+                    handler(newVal) {
+                        console.log(newVal);
+                    },
+                    // 通过 immediate 选项，让侦听器自动触发
+                    immediate: true,
+                    // 通过 deep 选项，让侦听器深度监听对象中每个属性的变化
+                    deep: true
                 }
             }
         });

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>14-axios 的基本使用</title>
+  <script src="./lib/axios.js"></script>
+</head>
+
+<body>
+ 
+  <script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        // 红色
+        r: 0,
+        // 绿色
+        g: 0,
+        // 蓝色
+        b: 0
+      },
+      methods: {
+        // 点击按钮，在终端显示最新的颜色
+        show() {
+          console.log(this.myRGB);
+        }
+      },
+
+      // 所有的计算属性都要定义到 computed 节点之下
+      computed: {
+        // myRGB 被定义成方法格式，是一个计算属性
+        myRGB() {
+          return `rgb(${this.r}, ${this.g}, ${this.b})`;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -3,15 +3,33 @@
     <h3>Left 组件</h3>
     <hr />
     <p>{{ msg }}</p>
-    <p>{{ user}}</p>
+    <p>{{ user }}</p>
 
     <MyCount :init="9"></MyCount>
+    <hr>
+    <button @click="send">点击发送</button>
+
+
   </div>
 </template>
 
 <script>
+import bus from './eventBus.js'
+
 export default {
-  props: ['msg', 'user']
+  props: ['msg', 'user'],
+  // 兄弟组件的数据共享，步骤一
+  data() {
+    return {
+      str: '白云'
+    }
+  },
+  methods: {
+    // 兄弟组件的数据共享，步骤四
+    send() {
+      bus.$emit('search', this.str)
+    }
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <h3>年后的的的</h3>
+    <h3>年后的的的 {{ countFromSon}}</h3>
     <HelloWorld msg="Welcome to Your Vue.js App" />
     你好---- {{ uername }} ------
 
@@ -9,7 +9,7 @@
     <div>
       <Test></Test>
       <Left :msg="message" :user="uername"></Left>
-      <Right></Right>
+      <Right @numChange="getNewCount"></Right>
     </div>
   </div>
 </template>
@@ -33,7 +33,8 @@ export default {
   data() {
     return {
       uername: '大冶',
-      message: '二恶'
+      message: '二恶',
+      countFromSon: 0
     }
   },
   computed: {
@@ -42,6 +43,9 @@ export default {
   methods: {
     changeName() {
       this.uername = '天工'
+    },
+    getNewCount(val) {
+      this.countFromSon = val;
     }
   },
   // 侦听器

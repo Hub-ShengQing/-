@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03-jQuery 对象和 DOM 对象</title>
+    <script src="./libs/jquery-3.6.0.min.js"></script>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <span></span>
+    <script>
+        // 1. DOM 对象；用原生 JS 获取过来的对象
+        var myDiv = document.querySelector('div'); // myDiv 是DOM对象
+        var mySpan = document.querySelector('span'); // mySpan 是DOM对象
+        console.dir(myDiv);
+        // 2. jQuery 对象：用 jQuery 方式获取过来的对象，通过 $ 把 DOM 元素进行了包装
+        $('div'); // $('div') 是一个 jQuery 对象
+        $('span'); // $('span') 是一个 jQuery 对象
+        console.dir($('div'));
+        // 3. jQuery 对象只能使用 jQuery 方法，DOM 对象则使用原生的 JavaScirpt 属性和方法
+        // myDiv.hide(); myDiv 是一个 DOM 对象不能使用 jQuery 里面的 hide 方法
+        // $('div').style.display = 'none'; 这个 $('div') 是一个 jQuery 对象不能使用原生 JS 的属性和方法
+    </script>
+</body>
+
+</html>

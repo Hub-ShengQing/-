@@ -12,7 +12,7 @@
 <body>
     <a href="http://www.itcast.cn" title="都挺好">都挺好</a>
     <input type="checkbox" name="" id="" checked>
-    <div index="1" data-index="2">我是div</div>
+    <div index="1" data-rrt="大叔">我是div</div>
     <span>123</span>
     <script>
         $(function () {
@@ -31,8 +31,8 @@
             // 3. 数据缓存 data() 这个里面的数据是存放在元素的内存里面
             $("span").data("uname", "andy");
             console.log($("span").data("uname"));
-            // 这个方法获取 data-index h5 自定义属性 第一个不用写 data-  而且返回的是数字型
-            console.log($("div").data("index"));
+            // 这个方法获取 h5 自定义属性 data() 里面不用写 data-
+            console.log($("div").data("rrt"));
         })
     </script>
 </body>

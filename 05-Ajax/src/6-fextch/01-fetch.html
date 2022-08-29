@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fetch</title>
+</head>
+
+<body>
+  <button>fetch</button>
+
+  <script>
+    let btn = document.querySelector('button');
+
+    btn.onclick = function () {
+      fetch('http://localhost:8990/json-server', {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'hello fetch'
+      }).then(res => {
+        // return res.text();
+        return res.json();
+      }).then(res => {
+        console.log(res);
+      })
+    }
+  </script>
+</body>
+
+</html>

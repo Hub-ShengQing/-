@@ -4,12 +4,11 @@
 
 <script>
 export default {
-  name: "MyUser",
-  data() { 
+  name: 'userPage',
+  data() {
     return {}
-  }
+  },
 }
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>axios</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.min.js"></script>
+</head>
+
+<body>
+  <button>GET</button>
+  <button>POST</button>
+  <button>ALL</button>
+
+  <script>
+    var btns = document.querySelectorAll('button');
+
+    axios.defaults.baseURL = 'http://localhost:8990';
+
+    btns[0].onclick = function () {
+      axios.get('/server/get', {
+        params: {
+          ID: 12345
+        },
+        headers: {
+          name: "Lisa"
+        }
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () {
+          // 总是会执行
+        });
+    }
+
+    btns[1].onclick = function () {
+      axios.post('/server/post', {
+        params: {
+          ID: 9000
+        },
+        headers: {
+          age: "28"
+        },
+        data: {
+          username: "admin"
+        }
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () {
+          // 总是会执行
+        });
+    }
+
+    btns[2].onclick = function () {
+      axios({
+        method: 'POST',
+        url: '/server/post',
+        params: {
+          ID: 9000
+        },
+        headers: {
+          age: "28"
+        },
+        data: {
+          username: "admin"
+        }
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () {
+          // 总是会执行
+        });
+    }
+  </script>
+</body>
+
+</html>

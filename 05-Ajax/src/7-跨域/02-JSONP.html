@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSONP 解决跨域-只支持GET</title>
+</head>
+
+<body>
+  <div>
+    请输入用户名：<input type="text">
+    <p class="name_tip"></p>
+  </div>
+
+  <script>
+    var nameInput = document.querySelector('input');
+    var nameTip = document.querySelector('.name_tip');
+    console.log(nameTip);
+
+    function handle(_tip) {
+      nameInput.style.border = '1px solid #f00';
+      nameTip.innerHTML = _tip;
+    }
+
+    input.onblur = function () {
+      let nameScript = document.createElement('script');
+      nameScript.src = 'http://127.0.0.1:9000/check-username';
+      // 插入文档
+      document.body.appendChild(nameScript);
+    }
+  </script>
+</body>
+
+</html>

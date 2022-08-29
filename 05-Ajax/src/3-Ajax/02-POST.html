@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax POST</title>
+  <style>
+    .response {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="response"></div>
+
+  <script>
+    const resDiv = document.getElementsByClassName('response')[0];
+
+    resDiv.addEventListener('mouseover', function () {
+      // 1. 创建对象
+      const xhr = new XMLHttpRequest();
+
+      // 2. 初始化 设置方法和 url
+      xhr.open('POST', 'http://localhost:8990/server/post');
+
+      // 设置请求头
+      xhr.setRequestHeader('Content-Type', 'application/x-www-from-urlencoded');
+      // 自定义头信息
+      xhr.setRequestHeader('name', 'ykyk');
+
+      // 3. 发送
+      xhr.send('aa=1000&mmm=bbb');
+
+      // 4. 事件绑定 处理服务端返回的结果
+      // readystate 是 xhr 对象的属性，表示状态 0 1 2 3 4
+      xhr.onreadystatechange = function () {
+        // 判断，当服务端所有结果返回
+        if (xhr.readyState === 4) {
+          // 判断响应状态码
+          if (xhr.status >= 200 && xhr.status < 300) {
+            // 1. 响应行
+            console.log(xhr.status);  // 状态码
+            console.log(xhr.statusText);  // 状态字符串
+            console.log(xhr.getAllResponseHeaders); // 所有响应头
+
+            // 2. 响应体
+            console.log(xhr.response);
+
+            resDiv.innerHTML = xhr.response;
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

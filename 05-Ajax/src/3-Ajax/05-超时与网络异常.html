@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>超时与网络异常</title>
+  <style>
+    .response {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <button>发送请求</button>
+  <div class="response"></div>
+
+  <script>
+    const btn = document.getElementsByTagName('button')[0];
+    const resDiv = document.getElementsByClassName('response')[0];
+
+    btn.onclick = function () {
+      // 1. 创建对象
+      const xhr = new XMLHttpRequest();
+
+      // 超时设置
+      xhr.timeout = 2000;
+      xhr.ontimeout = function () {
+        alert('请求超时');
+      }
+
+      // 网络异常
+      xhr.onerror = function () {
+        alert('网络开小差');
+      }
+
+      // 2. 初始化 设置方法和 url
+      // 解决办法 加时间戳
+      xhr.open('GET', 'http://localhost:8990/server/delay-get');
+
+      // 3. 发送
+      xhr.send();
+
+      // 4. 事件绑定 处理服务端返回的结果
+      // readystate 是 xhr 对象的属性，表示状态 0 1 2 3 4
+      xhr.onreadystatechange = function () {
+        // 判断，当服务端所有结果返回
+        if (xhr.readyState === 4) {
+          // 判断响应状态码
+          if (xhr.status >= 200 && xhr.status < 300) {
+            // 1. 响应行
+            console.log(xhr.status);  // 状态码
+            console.log(xhr.statusText);  // 状态字符串
+            console.log(xhr.getAllResponseHeaders); // 所有响应头
+
+            // 2. 响应体
+            console.log(xhr.response);
+
+            resDiv.innerHTML = xhr.response;
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

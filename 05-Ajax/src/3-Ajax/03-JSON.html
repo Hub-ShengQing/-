@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON</title>
+  <style>
+    .response {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="response"></div>
+
+  <script>
+    const resDiv = document.getElementsByClassName('response')[0];
+
+    window.onkeydown = function () {
+      // 1. 创建对象
+      const xhr = new XMLHttpRequest();
+
+      // 设置响应体数据类型
+      xhr.responseType = 'json'
+
+      // 2. 初始化 设置方法和 url
+      xhr.open('GET', 'http://localhost:8990/json-server');
+
+      // 3. 发送
+      xhr.send();
+
+      // 4. 事件绑定 处理服务端返回的结果
+      // readystate 是 xhr 对象的属性，表示状态 0 1 2 3 4
+      xhr.onreadystatechange = function () {
+        // 判断，当服务端所有结果返回
+        if (xhr.readyState === 4) {
+          // 判断响应状态码
+          if (xhr.status >= 200 && xhr.status < 300) {
+            // 1. 响应行
+            console.log(xhr.status);  // 状态码
+            console.log(xhr.statusText);  // 状态字符串
+            console.log(xhr.getAllResponseHeaders); // 所有响应头
+
+            // 2. 响应体
+            console.log(xhr.response);
+
+            // let data = JSON.parse(xhr.response)
+            // console.log(data);
+
+            // resDiv.innerHTML = data.name;
+            resDiv.innerHTML = xhr.response.name;
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

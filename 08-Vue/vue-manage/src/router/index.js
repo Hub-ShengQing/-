@@ -1,28 +1,50 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// 导入需要路由的组件
-import Home from '../views/Home.vue'
-import User from '../views/User.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    component: () => import('@/views/Home.vue'),
+    children: [
+      {
+        path: '/',
+        name: 'Main',
+        component: () => import('@/views/Main/Main.vue'),
+      },
+      {
+        path: '/goods',
+        name: 'Goods',
+        component: () => import('@/views/Goods/Goods.vue'),
+      },
+      {
+        path: '/user',
+        name: 'User',
+        component: () => import('@/views/User/User.vue'),
+      },
+    ],
   },
   {
-    path: '/user',
-    name: 'User',
-    component: User,
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/Login/Login.vue'),
   },
 ]
 
 const router = new VueRouter({
   mode: 'history',
   routes,
+})
+
+// 配置全局前置守卫
+router.beforeEach(function (to, from, next) {
+  const token = localStorage.getItem('token')
+  if (!token && to.path !== '/login') {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

@@ -14,9 +14,20 @@ app.get('/data', function (req, res) {
   res.send('你好')
 })
 
+app.get('/get-data', function (req, res) {
+  let cb = req.query.callback
+  let str = JSON.stringify('你好')
+  res.end(`${cb}(${str})`)
+})
+
 app.all('/check-username', function (req, res) {
-  let tip = '该用户名已经存在'
-  res.end()
+  let tip = JSON.stringify('该用户名已经存在')
+  res.end(`handle(${tip})`)
+})
+
+app.all('/cors-server', function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.send('Hello CORS')
 })
 
 // 4. 监听端口启动服务

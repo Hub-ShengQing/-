@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise 封装 Ajax 请求</title>
+  <style>
+    .response {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <button>发送请求</button>
+  <div class="response"></div>
+
+  <script>
+    const btn = document.getElementsByTagName('button')[0];
+    const resDiv = document.getElementsByClassName('response')[0];
+
+    btn.onclick = function () {
+      const p = new Promise((reslove, reject) => {
+        // 1. 创建对象
+        const xhr = new XMLHttpRequest();
+
+        // 2. 初始化 设置方法和 url
+        xhr.open('GET', 'http://localhost:8990/server/get');
+
+        // 3. 发送
+        xhr.send();
+
+        // 4. 事件绑定 处理服务端返回的结果
+        // readystate 是 xhr 对象的属性，表示状态 0 1 2 3 4 
+        xhr.onreadystatechange = function () {
+          // 判断，当服务端所有结果返回
+          if (xhr.readyState === 4) {
+            // 判断响应状态码
+            if (xhr.status >= 200 && xhr.status < 300) {
+              reslove(xhr.response);
+            } else {
+              reject(xhr.status);
+            }
+          }
+        }
+      });
+
+      p.then(value => {
+        console.log(value);
+      }, reason => {
+        console.log(reason);
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初体验</title>
+</head>
+
+<body>
+  <h1>Promise</h1>
+  <button>开始抽奖</button>
+
+  <script>
+    let btn = document.querySelector('button');
+    btn.onclick = function () {
+      const pp = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          let n = Math.random() * 100;
+          if (n <= 50) {
+            resolve(n);  // 设置 promise 对象的状态
+          } else {
+            reject(n);  // 设置 promise 对象的状态
+          }
+        }, 1000);
+      });
+
+      pp.then((value) => {
+        alert("成功" + value);
+      }, (reason) => {
+        alert("失败" + reason);
+      });
+    }
+
+
+  </script>
+</body>
+
+</html>

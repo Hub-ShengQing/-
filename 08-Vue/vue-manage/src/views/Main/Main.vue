@@ -31,7 +31,7 @@
 
       <!-- 语言卡片 -->
       <el-card class="lang-card" shadow="hover">
-        <div class="lang-title">语言详情</div>
+        <div class="card-title">语言详情</div>
         <div class="progress-title">
           Vue<el-progress
             :text-inside="true"
@@ -89,7 +89,8 @@
 
         <!-- 表格卡片 -->
         <el-card shadow="hover">
-          <el-table :data="tableData">
+          <div class="card-title">销量统计</div>
+          <el-table height="242" stripe :data="tableData">
             <el-table-column
               show-overflow-tooltip
               v-for="(val, key) in tableLabel"
@@ -101,10 +102,10 @@
         </el-card>
 
         <!-- 图表卡片 -->
-        <div class="graph-container">
-          <el-card shadow="hover"> </el-card>
-          <el-card shadow="hover"> </el-card>
-        </div>
+        <el-card shadow="hover">
+          <div class="card-title">上周情况</div>
+          <div class="graph-container" ref="echarts"></div>
+        </el-card>
       </div>
     </el-col>
   </el-row>
@@ -112,6 +113,7 @@
 
 <script>
 import { getData } from '@/api/data.js'
+import * as echarts from 'echarts'
 
 export default {
   name: 'mainPage',
@@ -163,7 +165,7 @@ export default {
       ],
       tableData: [],
       tableLabel: {
-        name: '课程',
+        name: '品牌',
         todayBuy: '今日购买',
         monthBuy: '本月购买',
         totalBuy: '总购买',
@@ -178,7 +180,52 @@ export default {
   },
   mounted() {
     getData().then((res) => {
-      console.log(res)
+      const { code, data } = res.data
+      if (code === 20000) {
+        this.tableData = data.tableData
+        const orderData = data.orderData
+        console.log(orderData)
+        const seriesData = []
+        const keyArray = Object.keys(orderData.data[0])
+
+        keyArray.forEach((key) => {
+          seriesData.push({
+            name: key,
+            type: 'line',
+            stack: 'Total',
+            data: orderData.data.map((item) => item[key]),
+          })
+        })
+
+        const option = {
+          tooltip: {
+            trigger: 'axis',
+          },
+          legend: {
+            data: orderData.name,
+          },
+          grid: {
+            left: '2%',
+            right: '2%',
+            bottom: '2%',
+            containLabel: true,
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: orderData.date,
+          },
+          yAxis: {
+            type: 'value',
+          },
+          series: seriesData,
+        }
+
+        console.log(this.$refs.echarts)
+
+        const myChart = echarts.init(this.$refs.echarts)
+        myChart.setOption(option)
+      }
     })
   },
 }
@@ -223,7 +270,7 @@ export default {
   font-size: 15px;
 }
 
-.lang-title {
+.card-title {
   padding-bottom: 10px;
   border-bottom: 1px solid @color-gray;
   margin-bottom: 10px;
@@ -269,12 +316,7 @@ export default {
 }
 
 .graph-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-
-  .el-card {
-    width: 48%;
-  }
+  width: 330px;
+  height: 242px;
 }
 </style>

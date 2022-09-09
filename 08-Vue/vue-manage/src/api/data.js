@@ -1,4 +1,5 @@
-import axios from './axios'
+/* 所有的接口请求 */
+import axios from './axios' // 引入封装好的 axios
 
 export const getMenu = (param) => {
   return axios.request({
@@ -10,7 +11,7 @@ export const getMenu = (param) => {
 
 export const getData = () => {
   return axios.request({
-    url: '/getData',
+    url: '/home/getData',
     method: 'get',
   })
 }

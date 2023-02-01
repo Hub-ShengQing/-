@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07-requestIdleCallback简介</title>
+</head>
+
+<body>
+
+  <p>requestIdleCallback 维护一个队列，将在浏览器空闲时间内执行，属于 Background Tasks API。</p>
+  <p>在 requestIdleCallback 中执行任务时需要注意以下几点：</p>
+  <ol>
+    <li>执行重计算而非紧急任务</li>
+    <li>空闲回调执行时间应该小于 50ms，最好更少</li>
+    <li>空闲回调中不要操作 DOM，因为它本来就是利用的重排重绘后的间隙空闲时间，重新操作 DOM 又会造成重排重绘
+    </li>
+  </ol>
+</body>
+
+</html>

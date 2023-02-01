@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08-白屏时间和首屏时间</title>
+</head>
+
+<body>
+  <button>hello</button>
+
+  <script>
+    let domLoadTime = window.performance.timing.domLoading - window.performance.timing.navigationStart;
+    let domInteractiveTime = window.performance.timing.domInteractive - window.performance.timing.navigationStart;
+    console.log(window.performance);
+    console.log("白屏时间：" + domLoadTime);
+    console.log("首屏时间：" + domInteractiveTime);
+  </script>
+</body>
+
+</html>

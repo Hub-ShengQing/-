@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05-浏览器监听剪切板</title>
+</head>
+
+<body>
+  <input type="text" value="千山鸟飞绝" />
+  <button onclick="copyText()">点击获取</button>
+
+  <!-- 通过 Clipboard API 可以获取剪切板中内容，但需要获取到 clipboard-read 的权限 -->
+  <script>
+    async function copyText() {
+      // 是否能够有读取剪贴板的权限
+      // result.state == "granted" || result.state == "prompt"
+      const result = await navigator.permissions.query({ name: "clipboard-read" });
+
+      // 获取剪贴板内容
+      const text = await navigator.clipboard.readText();
+
+      // 展示到文本框
+      let textInput = document.querySelector('input');
+      textInput.value = text;
+    }
+  </script>
+</body>
+
+</html>
